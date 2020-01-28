@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> {{ case_name }}</title>
+    <style type="text/css">
+    .table-cell {
+        height: 280px;
+    }
+    img {
+        height: inherit;
+        width: auto;
+    }
+    h1 {
+        font-family: sans-serif;
+    }
+    </style>
+</head>
+<body>
+<div style="max-width: 1100px;  margin: auto;">
+
+<div style="max-width: 800px; margin: auto;">
+    <h1>Case: {{ case_name }}</h1>
+    <span>location: {{ case_config['location'] }} </span><br/>
+    <span>time:     {{ case_config['time_interval']|join(' ') }} [UTC]</span><br/>
+    <span>range:    {{ case_config['range_interval']|join(' ') }} [m]</span>
+    {% if 'comment' in case_config %}
+      <br/><span>comment: {{ case_config['comment'] }} </span>
+    {% endif %}
+
+    {% if 'link' in case_config %}
+    <br/><a href="{{ case_config['link'] }}">LARDA explorer</a>
+    {% endif %}
+</div>
+<p> </p>
+<table>
+    <!-- This is a comment -->
+
+        <!-- Start with cloudnet classification/products -->
+    <tr><th>Cloudnet Target Classification</th></tr>
+    <tr>
+        <td class="table-cell"><img src="{{ savenames['cloudnet_class'] }}" alt="cloudnet_class" /></td>
+        <td class="table-cell"><img src="{{ savenames['cloudnet_class_lr'] }}" alt="cloudnet_class_lr" /></td>
+    </tr>
+
+    <tr><th>PollyNET classification version1 and version2</th></tr>
+    <tr>
+        <td class="table-cell"><img src="{{ savenames['pollynet_class'] }}" alt="pollynet_class" /></td>
+        <td class="table-cell"><img src="{{ savenames['pollynet_class_v2'] }}" alt="pollynet_class_v2" /></td>
+    </tr>
+
+    <tr><th>Cloudnet Quality Flag</th></tr>
+    <tr>
+        <td class="table-cell"><img src="{{ savenames['cloudnet_detection_status'] }}" alt="cloudnet_detection_status" /></td>
+        <td class="table-cell"><img src="{{ savenames['cloudnet_detection_status_lr'] }}" alt="cloudnet_detection_status_lr" /></td>
+    </tr>
+
+    <tr><th>Ceilometer Att. Bsc. and Microwave Radiometer LWP</th></tr>
+    <tr>
+        <td class="table-cell"><img title="Cloudnet Attenuated Backscatter (Ceilometer)" src="{{ savenames['cloudnet_beta'] }}" alt="cloudnet_beta" /></td>
+        <td class="table-cell"><img title="Cloudnet Liquid Water Path (MWP-LWP)" src="{{ savenames['cloudnet_lwp'] }}" alt="cloudnet_lwp" /></td>
+    </tr>
+
+
+        <!-- For Punta Arenas two radars are available, plot Ze, VEL, sw, ldr of both -->
+
+    <tr><th>High Resolution Doppler Cloud Radar Moments</th></tr>
+    <tr>
+        <td class="table-cell"><img src="{{ savenames['mira_z'] }}" alt="mira_z" /></td >
+        <td class="table-cell"><img src="{{ savenames['limrad_Ze'] }}" alt="limrad_Ze" /></td>
+    </tr>
+    <tr>
+        <td class="table-cell"><img src="{{ savenames['mira_v'] }}" alt="mira_v" /></td>
+        <td class="table-cell"><img src="{{ savenames['limrad_VEL'] }}" alt="limrad_VEL" /></td>
+    </tr>
+    <tr>
+        <td class="table-cell"><img src="{{ savenames['mira_sw'] }}" alt="mira_sw" /></td>
+        <td class="table-cell"><img src="{{ savenames['limrad_sw'] }}" alt="limrad_sw" /></td>
+    </tr>
+    <tr>
+        <td class="table-cell"><img src="{{ savenames['mira_ldr'] }}" alt="mira_ldr" /></td>
+        <td class="table-cell"><img src="{{ savenames['limrad_ldr'] }}" alt="limrad_ldr" /></td>
+    </tr>
+
+         <!-- More PollyXT variables, backscatter at each wavelength + depolarization ratio -->
+    <tr><th>Polarization Lidar Variabel @355, 532, 1064 nm wavelength</th></tr>
+    <tr>
+        <td class="table-cell"><img src="{{ savenames['polly_bsc355'] }}" alt="polly_bsc355" /></td>
+        <td class="table-cell"><img src="{{ savenames['polly_bsc532'] }}" alt="polly_bsc532" /></td>
+    </tr>
+    <tr>
+        <td class="table-cell"><img src="{{ savenames['polly_bsc1064'] }}" alt="polly_bsc1064" /></td>
+        <td class="table-cell"><img src="{{ savenames['polly_depol'] }}" alt="polly_voldepol532" /></td>
+    </tr>>
+
+        <!-- Liquid Water path of Cloudnet aka MWR-LWP and of LIMRAD94 (passive channel 89GHz) -->
+    <tr><th>Liquid Water Paths</th></tr>
+    <tr>
+        <td class="table-cell"><img src="{{ savenames['hatpro_lwp'] }}" alt="hatpro_lwp" /></td>
+        <td class="table-cell"><img src="{{ savenames['limrad_lwp'] }}" alt="limrad_lwp" /></td>
+    </tr>
+        <tr>
+        <td class="table-cell"><img src="{{ savenames['hatpro_iwv'] }}" alt="hatpro_iwv" /></td>
+        <td class="table-cell"><img src="" alt="not used" /></td>
+    </tr>
+
+        <!-- N/A for now -->
+    <tr><th>Wind Vectors</th></tr>
+    <tr>
+        <td class="table-cell"><img src="{{ savenames['class_with_rect'] }}" alt="class_with_rect" /></td>
+        <td class="table-cell"><img src="{{ savenames['hor_barbs'] }}" alt="hor_barbs" /></td>
+    </tr>
+
+        <!-- Shaun data N/A on gpu workstation (for now) -->
+    <tr><th>Shaun Doppler Lidar Variables</th></tr>
+    <tr>
+        <td class="table-cell"><img src="{{ savenames['shaun_beta'] }}" alt="shaun_beta" /></td>
+        <td class="table-cell"><img src="{{ savenames['shaun_vel'] }}" alt="shaun_vel" /></td>
+    </tr>
+
+
+</table>
+
+
+<div style="max-width: 800px; margin: auto;">
+{% for key, value in data.items() %}
+    <li>{{ key }}: {{ value['file_history'] }}</li> 
+{% endfor %}
+
+
+{% for key, value in savenames.items() %}
+    <li>{{ key }}: {{ value }}</li> 
+{% endfor %}
+
+</div>
+
+
+</div>
+ 
+</body>
+</html>

@@ -1,0 +1,229 @@
+campaign = 'lacros_dacapo_gpu'
+
+
+[case.20181201-01]
+    time_interval = ['20181201-0001', '20181201-2359']
+    range_interval = [0, 12000]
+    plot_dir = 'plots/20181201-01/'
+
+[case.20181226-01]
+    time_interval = ['20181226-0001', '20181226-1359']
+    range_interval = [0, 10000]
+    plot_dir = 'plots/20181226-01/'
+
+[case.20190410-01]
+    time_interval = ['20190410-0259', '20190410-2301']
+    range_interval = [0, 12000]
+    plot_dir = 'plots/20190410-01/'
+
+
+[case.20190428-01]
+    time_interval = ['20190428-0001', '20190428-2359']
+    range_interval = [0, 12000]
+    plot_dir = 'plots/20190428-01/'
+
+[case.20190506-01]
+    time_interval = ['20190506-0001', '20190506-2359']
+    range_interval = [0, 12000]
+    plot_dir = 'plots/20190506-01/'
+    comment = 'weird features in radar moments (besides noisy data in the beginning)'
+
+[case.20190514-01]
+    time_interval = ['20190514-2001', '20190514-2359']
+    range_interval = [0, 7000]
+    plot_dir = 'plots/20190514-01/'
+
+[case.20190608-01]
+    time_interval = ['20190608-0001', '20190608-1201']
+    range_interval = [0, 10000]
+    plot_dir = 'plots/20190608-01/'
+
+[case.20190616-01]
+    time_interval = ['20190616-0001', '20190616-1201']
+    range_interval = [4000, 12000]
+    plot_dir = 'plots/20190616-01/'
+
+
+[case.20190708-01]
+    time_interval = ['20190708-0001', '20190708-2359']
+    range_interval = [0, 12000]
+    plot_dir = 'plots/20190708-01/'
+
+[case.20190801-02]
+    time_interval = ['20190731-0001', '20190803-1201']
+    range_interval = [0, 12000]
+    plot_dir = 'plots/20190801-01/'
+
+[case.20190801-01]
+    time_interval = ['20190801-0459', '20190801-0901']
+    range_interval = [0, 6000]
+    plot_dir = 'plots/20190801-01/'
+
+[case.20190528-01]
+    time_interval = ['20190528-0759', '20190528-1501']
+    range_interval = [0, 8000]
+    plot_dir = 'plots/20190528-01/'
+    comment = 'supercooled liquid layer below 2 km'
+
+
+[case.20190904-01]
+    time_interval = ['20190904-0001', '20190904-2359']
+    range_interval = [0, 12000]
+    plot_dir = 'plots/20190904-01/'
+
+[case.20190530-01]
+    time_interval = ['20190530-0459', '20190530-1801']
+    range_interval = [5000, 10000]
+    plot_dir = 'plots/20190530-01/'
+    comment = 'pure ice cloud between 6 and 10 km'
+
+[case.20190304-01]
+    time_interval = ['20190304-0001', '20190304-2359']
+    range_interval = [0, 8000]
+    plot_dir = 'plots/20190304-01/'
+
+[case.20190313-01]
+    time_interval = ['20190313-0001', '20190313-2359']
+    range_interval = [0, 12000]
+    plot_dir = 'plots/20190313-01/'
+
+[case.20190313-02]
+    time_interval = ['20190313-0259', '20190313-2101']
+    range_interval = [0, 6000]
+    plot_dir = 'plots/20190313-02/'
+
+[case.20190317-01]
+    time_interval = ['20190317-1501', '20190317-2359']
+    range_interval = [0, 12000]
+    plot_dir = 'plots/20190317-01/'
+
+[case.20190318-01]
+    time_interval = ['20190318-0359', '20190318-1701']
+    range_interval = [0, 10000]
+    plot_dir = 'plots/20190318-01/'
+
+[case.20190102-01]
+    time_interval = ['20190102-0001', '20190102-2359']
+    range_interval = [0, 12000]
+    plot_dir = 'plots/20190102-01/'
+
+[case.20190321-01]
+    time_interval = ['20190321-0001', '20190321-2359']
+    range_interval = [0, 12000]
+    plot_dir = 'plots/20190321-01/'
+
+
+[case.20190322-01]
+    time_interval = ['20190322-0001', '20190322-1359']
+    range_interval = [0, 12000]
+    plot_dir = 'plots/20190322-01/'
+
+[case.20190212-01]
+    time_interval = ['20190212-0001', '20190212-2359']
+    range_interval = [0, 12000]
+    plot_dir = 'plots/20190212-01/'
+    comment = 'atmospheric river?'
+
+[case.20181128-01]
+    time_interval = ['20181128-0100', '20181128-0800']
+    range_interval = [2000, 6000]
+    plot_dir = 'plots/20181128-01/'
+
+[case.20181130-01]
+    time_interval = ['20181130-0020', '20181130-0400']
+    range_interval = [2000, 5500]
+    plot_dir = 'plots/20181130-01/'
+[case.20181130-04]
+    time_interval = ['20181130-0400', '20181130-0500']
+    range_interval = [3000, 5500]
+    plot_dir = 'plots/20181130-04/'
+[case.20181130-08]
+    time_interval = ['20181130-0730', '20181130-1000']
+    range_interval = [3000, 8000]
+    plot_dir = 'plots/20181130-08/'
+[case.20181130-17]
+    time_interval = ['20181130-1700', '20181130-2300']
+    range_interval = [1000, 8000]
+    plot_dir = 'plots/20181130-17/'
+
+[case.20181201-14]
+    time_interval = ['20181201-1400', '20181201-1800']
+    range_interval = [2000, 7000]
+    plot_dir = 'plots/20181201-14/'
+[case.20181201-18]
+    time_interval = ['20181201-1730', '20181201-2330']
+    range_interval = [2000, 7000]
+    plot_dir = 'plots/20181201-18/'
+
+[case.20181202-00]
+    time_interval = ['20181202-0001', '20181202-0130']
+    range_interval = [5000, 8000]
+    plot_dir = 'plots/20181202-00/'
+
+[case.20181204-05]
+    time_interval = ['20181204-0430', '20181204-0630']
+    range_interval = [400, 3000]
+    plot_dir = 'plots/20181204-05/'
+[case.20181204-09]
+    time_interval = ['20181204-0900', '20181204-1700']
+    range_interval = [400, 7000]
+    plot_dir = 'plots/20181204-09/'
+
+[case.20181207-12]
+    time_interval = ['20181207-1130', '20181207-1630']
+    range_interval = [400, 6500]
+    plot_dir = 'plots/20181207-12/'
+
+[case.20181209-08]
+    time_interval = ['20181209-0800', '20181209-1030']
+    range_interval = [400, 3500]
+    plot_dir = 'plots/20181209-08/'
+[case.20181209-12]
+    time_interval = ['20181209-1200', '20181209-1640']
+    range_interval = [3000, 8000]
+    plot_dir = 'plots/20181209-12/'
+[case.20181209-16]
+    time_interval = ['20181209-1640', '20181209-2030']
+    range_interval = [400, 5000]
+    plot_dir = 'plots/20181209-16/'
+
+[case.20181211-05]
+    time_interval = ['20181211-0500', '20181211-0730']
+    range_interval = [1000, 4500]
+    plot_dir = 'plots/20181211-05/'
+[case.20181211-13]
+    time_interval = ['20181211-1320', '20181211-1500']
+    range_interval = [400, 3000]
+    plot_dir = 'plots/20181211-13/'
+[case.20181211-21]
+    time_interval = ['20181211-2100', '20181211-2230']
+    range_interval = [1000, 3500]
+    plot_dir = 'plots/20181211-21/'
+
+[case.20181212-05]
+    time_interval = ['20181212-0440', '20181212-0630']
+    range_interval = [2000, 4500]
+    plot_dir = 'plots/20181212-05/'
+[case.20181212-13]
+    time_interval = ['20181212-1240', '20181212-1520']
+    range_interval = [0, 3000]
+    plot_dir = 'plots/20181212-13/'
+
+[case.20181213-19]
+    time_interval = ['20181213-1940', '20181213-2130']
+    range_interval = [0, 3000]
+    plot_dir = 'plots/20181213-19/'
+
+[case.20181214-14]
+    time_interval = ['20181214-1200', '20181214-1500']
+    range_interval = [0, 4000]
+    plot_dir = 'plots/20181214-14/'
+
+[case.20181214-16]
+    comment = "extremely warm case from sniffer; bent back temperature profile"
+    #2018-12-14 16:41:15 - 2018-12-14 19:27:14.999084
+    time_interval = ['20181214-1640', '20181214-1930']
+	link = "http://larda.tropos.de/larda3/explorer/lacros_dacapo?interval=1569562064.999771-1569565695.000458%2C6281.811-7754.8286&params=CLOUDNET|CLASS,CLOUDNET|Z,POLLY|attbsc1064,POLLY|depol" 
+    range_interval = [0, 2500]
+    plot_dir = 'plots/20181214-16/'
+
