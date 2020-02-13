@@ -43,6 +43,10 @@ campaign = 'lacros_dacapo_gpu'
     range_interval = [4000, 12000]
     plot_dir = 'plots/20190616-01/'
 
+[case.20190617-01]
+    time_interval = ['20190617-0001', '20190617-2359']
+    range_interval = [0, 12000]
+    plot_dir = 'plots/20190617-01/'
 
 [case.20190708-01]
     time_interval = ['20190708-0001', '20190708-2359']

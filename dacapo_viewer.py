@@ -43,133 +43,6 @@ log.addHandler(logging.StreamHandler())
 
 DPI_ = 300
 
-
-# def sniff_for_clouds(data, case_config):
-#    sys.path.append('sniffer/sniffer_code')
-#    import cc_sniffer_ac
-#
-#    lidar_present = False
-#    features_in_timestep=[]
-#    for i in range(data["CLOUDNET_class"]["ts"].shape[0]):
-#
-#        h.print_traceback("no Time:",i)
-#        profiles = {}
-#        profiles['cc'] = lT.slice_container(data['CLOUDNET_class'], index={'time': [i]})
-#        #h.pprint(profiles['cc'])
-#        #profiles['IWC'] = lT.slice_container(data['IWC'], index={'time': [i]})
-#        #profiles['LWC_S'] = lT.slice_container(data['LWC_S'], index={'time': [i]})
-#        #profiles['LWC'] = lT.slice_container(data['LWC'], index={'time': [i]})
-#        # profiles['Z'] = lT.slice_container(data['Z'], index={'time': [i]})
-#        # profiles['SNR'] = lT.slice_container(data['SNR'], index={'time': [i]})
-#        # profiles['LDR'] = lT.slice_container(data['LDR'], index={'time': [i]})
-#        # profiles['LDRcorr'] = lT.slice_container(data['LDRcorr'], index={'time': [i]})
-#        # profiles['v'] = lT.slice_container(data['v'], index={'time': [i]})
-#        # profiles['width'] = lT.slice_container(data['width'], index={'time': [i]})
-#        # profiles['beta'] = lT.slice_container(data['beta'], index={'time': [i]})
-#
-#        # if lidar_present:
-#        #     profiles['delta'] = lT.slice_container(data['delta'], index={'time': [i]})
-#
-#        # if doppler_present:
-#        #     it_b_dl = h.argnearest(data["v_lidar"]['ts'], data["cc"]["ts"][i]-15)
-#        #     it_e_dl = h.argnearest(data["v_lidar"]['ts'], data["cc"]["ts"][i]+15)
-#        #     if not it_b_dl == it_e_dl:
-#        #         h.print_traceback("no no doppler lidar for this profile", i)
-#        #         profiles['v_lidar'] = lT.slice_container(data['v_lidar'],
-#        #                 index={'time': [it_b_dl, it_e_dl]})
-#        #         profiles['a_lidar'] = lT.slice_container(data['a_lidar'],
-#        #                 index={'time': [it_b_dl, it_e_dl]})
-#
-#        # profiles['T'] = lT.slice_container(data['T'], index={'time': [i]})
-#        # profiles['p'] = lT.slice_container(data['p'], index={'time': [i]})
-#        # profiles['uwind'] = lT.slice_container(data['uwind'], index={'time': [i]})
-#        # profiles['vwind'] = lT.slice_container(data['vwind'], index={'time': [i]})
-#
-#        keys_to_feature = ["IWC", "LWC_S", "LWC", "Z", "v", "width", "T", "p", "SNR",
-#            "uwind", "vwind", "beta", "LDR", "LDRcorr"]
-#        keys_to_feature = []
-#        if lidar_present:
-#            keys_to_feature += ["delta"]
-#
-#        features_in_profile = cc_sniffer_ac.find_features_in_profile(profiles, keys_to_feature)
-#        features_in_timestep.append(features_in_profile)
-#
-#    detected_features_mixed=[]
-#    detected_features_ice=[]
-#    detected_features_tower=[]
-#
-#    for features_in_profile in features_in_timestep:
-#        for f in features_in_profile:
-#            if f.type=="mixed-phase" or f.type=="liquid-based" or f.type=="pure_liquid":
-#                detected_features_mixed.append(f)
-#            elif f.type=="pure_ice":
-#                detected_features_ice.append(f)
-#            elif f.type=="tower":
-#                detected_features_tower.append(f)
-#
-#    h.print_traceback("no Searching for layered clouds")
-#    clouds_mixed=cc_sniffer_ac.connect_features(detected_features_mixed,
-#                                h_threshold=4000.0,v_threshold=200.0,cloud_type="layered")
-#    #clouds_mixed = []
-#    h.print_traceback("no Searching for cirrus (pure ice) clouds")
-#    #
-#    # 10000 as h_threshold seems a littlebit too much
-#    clouds_ice=cc_sniffer_ac.connect_features(detected_features_ice,h_threshold=5000.0,v_threshold=500,cloud_type="ice")
-#    h.print_traceback("no Searching for deep clouds")
-#    clouds_tower=cc_sniffer_ac.connect_features(detected_features_tower,h_threshold=5000.0,v_threshold=500.0,cloud_type="tower")
-#
-#    all_clouds = clouds_mixed + clouds_ice + clouds_tower
-#    #plotting
-#    cloud_rectangles=[]
-#    for i, cloud in enumerate(all_clouds):
-#
-#        if all_clouds[i].n_profiles()==0:
-#            continue
-#
-#        c_type=cloud.most_common_type()
-#        h.print_traceback("no cloud type ", cloud.cloud_type)
-#        h.print_traceback("no len of feature", len(cloud.features))
-#        #clouds[i].type=c_type
-#        if c_type=="pure_liquid":
-#            color='blue'
-#        elif c_type=="pure_ice":
-#            color='green'
-#        elif c_type=="liquid-based":
-#            color='blue'
-#        elif c_type=="mixed-phase":
-#            color='red'
-#        elif c_type=="tower":
-#            color="black"
-#        else:
-#            color='gray'
-#
-#        cg = cloud.geometry()
-#        #if clouds[i].top_variation()<200.0 and clouds[i].time_length()>1800 and clouds[i].cloud_top_thickness()[0]<400.0 and  clouds[i].fill_factor()>0.75:
-#        #if c_type=="tower":
-#        if cloud.time_length()>900 and cloud.fill_factor()>0.60:
-#            cloud_rectangles.append((cg[0],cg[1],cg[2],cg[3],color))
-#
-#    fig, ax = lT.plot_timeheight(data['CLOUDNET_class'], range_interval=case_config['range_interval'])
-#    import matplotlib.patches as patches
-#    for cm in cloud_rectangles:
-#        print(cm)
-#        begin = h.ts_to_dt(cm[0])
-#        duration=datetime.timedelta(seconds=cm[2])
-#        rect = patches.Rectangle(
-#                (begin,cm[1]),duration,cm[3],linewidth=2,
-#                edgecolor=cm[4],facecolor=cm[4],alpha=0.2)
-#
-#        # Add the patch to the Axes
-#        ax.add_patch(rect)
-#
-#    savename = "{}_class_with_rect.png".format(h.ts_to_dt(data["CLOUDNET_class"]["ts"][0]).strftime("%Y%m%d-%H%M"))
-#    fig.savefig(case_config['plot_dir'] +savename, dpi=DPI_)
-#
-#    return savename
-
-
-
-
 def plot_case_study(case_study, contour_lines='T'):
     if not os.path.exists(case_study['plot_dir']):
         os.makedirs(case_study['plot_dir'])
@@ -252,7 +125,7 @@ def plot_case_study(case_study, contour_lines='T'):
         h.print_traceback('no CLOUDNET DETECTION status available')
 
     try:
-        CLOUDNET_LR_class = larda.read("CLOUDNET_LIMRAD", "CLASS", dt_interval, case_study['range_interval'])
+        CLOUDNET_LR_class = larda.read("CLOUDNETpy94", "CLASS", dt_interval, case_study['range_interval'])
         fig_lr, _ = pyLARDA.Transformations.plot_timeheight(CLOUDNET_LR_class, range_interval=case_study['range_interval'], contour=contour)
         savenames['cloudnet_class_lr'] = "{}_cloudnet_class_lr.png".format(dt_interval[0].strftime("%Y%m%d-%H%M"))
         fig_lr.savefig(case_study['plot_dir'] + savenames['cloudnet_class_lr'], dpi=DPI_)
@@ -474,6 +347,7 @@ def plot_case_study(case_study, contour_lines='T'):
 
     try:
         polly_bsc1064 = larda.read("POLLY", "attbsc1064", dt_interval, case_study['range_interval'])
+        polly_bsc1064['colormap'] = 'jet'
         fig, _ = pyLARDA.Transformations.plot_timeheight(polly_bsc1064, range_interval=case_study['range_interval'], z_converter="log", contour=contour)
         savenames['polly_bsc1064'] = "{}_polly_bsc1064.png".format(dt_interval[0].strftime("%Y%m%d-%H%M"))
         fig.savefig(case_study['plot_dir'] + savenames['polly_bsc1064'], dpi=DPI_)
@@ -483,6 +357,7 @@ def plot_case_study(case_study, contour_lines='T'):
 
     try:
         polly_depol = larda.read("POLLY", "depol", dt_interval, case_study['range_interval'])
+        polly_depol['colormap'] = 'jet'
         fig, _ = pyLARDA.Transformations.plot_timeheight(polly_depol, range_interval=case_study['range_interval'], contour=contour)
         savenames['polly_depol'] = "{}_polly_depol.png".format(dt_interval[0].strftime("%Y%m%d-%H%M"))
         fig.savefig(case_study['plot_dir'] + savenames['polly_depol'], dpi=DPI_)
@@ -541,7 +416,7 @@ def get_explorer_link(campaign, time_interval, range_interval, params):
 
 
 if __name__ == '__main__':
-    case_name = '20190904-01'
+    case_name = '20190801-01'
 
     config_case_studies = toml.load('dacapo_case_studies.toml')
 
